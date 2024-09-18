@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { getCurrencies, getConvert } from "api/calls";
+import { getConvert, getCurrencies } from "api/calls";
 import { ICurrencies } from "models";
 
 export const useHome = () => {
