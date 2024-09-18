@@ -1,15 +1,15 @@
-# TDS
+# TDS :rocket:
 
 Simple currency conversion tool
 
 ![](https://github.com/KarolGrydz/tds/blob/main/tds.gif)
 
-Notes:
+Notes: :dart:
 
 - IMPORTANT normally we should add file .env to .gitignore but in this recruitment task I left it on purpose
 - there are no real styles, just center the content
 
-Possible things to add in the future or upgrade the existing ones:
+Possible things to add in the future or upgrade the existing ones: :chart_with_upwards_trend:
 
 - creating user-friendly views (home page, error page, loading spinner)
 - for a larger application, a style library (MaterialUI or tailwind) or create some design system
