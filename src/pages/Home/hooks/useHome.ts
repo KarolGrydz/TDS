@@ -1,6 +1,10 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { getConvert, getCurrencies } from "api/calls";
 import { ICurrencies } from "models";
+
+// const TODAY = new Date();
+// const is_request_sended = localStorage.set(TODAY);
+// const is_request_sended = localStorage.get(TODAY);
 
 export const useHome = () => {
   const [currencies, setCurrencies] = useState<ICurrencies[] | []>([]);
@@ -9,6 +13,7 @@ export const useHome = () => {
   const [amount, setAmount] = useState("");
   const [result, setResult] = useState<number>(0);
   const [isError, setIsError] = useState(false);
+  const [lastResults, setLastResults] = useState<any[]>([]); //
 
   const handleChangeSelectFrom = (e: ChangeEvent<HTMLSelectElement>): void =>
     setFrom(e.target.value);
@@ -22,7 +27,19 @@ export const useHome = () => {
   useEffect(() => {
     if (from && to && amount) {
       getConvert(from, to, amount)
-        .then(({ data }) => setResult(data.value))
+        .then(({ data }) => {
+          console.log(data);
+          setResult(data.value);
+          setLastResults((prevValue) => [
+            {
+              from,
+              to,
+              amount,
+              lastResult: data.value.toFixed(2),
+            },
+            ...prevValue,
+          ]);
+        })
         .catch(() => setIsError(true));
     }
   }, [from, to, amount]);
@@ -45,5 +62,6 @@ export const useHome = () => {
     isError,
     currencies,
     amount,
+    lastResults,
   };
 };

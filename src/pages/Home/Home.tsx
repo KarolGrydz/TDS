@@ -3,6 +3,7 @@ import { SelectCurrencies } from "components";
 
 import { useHome } from "./hooks";
 import { Amount, Result } from "./components";
+import { LastResults } from "./components/LastResults/LastResults";
 
 export const Home = () => {
   const {
@@ -13,6 +14,7 @@ export const Home = () => {
     isError,
     currencies,
     amount,
+    lastResults,
   } = useHome();
 
   if (!currencies.length) return <div>Loading...</div>;
@@ -40,6 +42,7 @@ export const Home = () => {
           id="to-currencies"
         />
         <Result result={result} />
+        <LastResults lastResults={lastResults} maxItems={5} />
       </div>
     </div>
   );
